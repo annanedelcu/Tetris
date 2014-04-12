@@ -1,0 +1,40 @@
+Nume si prenume:      Nedelcu Ana
+Grupa:                312CC
+Tema:                 Tema 3, Programarea Calculatoarelor
+Tema proiectului:     Tetris
+Versiunea de compilator:            gcc (Ubuntu 4.4.3-4ubuntu5) 4.4.3
+Dependente externe:
+
+Pentru compilare, este necesara instalarea bibliotecii ncurses: sudo apt-get install libncurses5-dev.
+                                      
+===============================================================================
+A) Detalii de implementare, bonusuri implementate:
+Pentru ca jocul sa arate normal, trebuie ca terminalul pe care este rulat sa aiba minim 32 de randuri si 60 de coloane si sa suporte culori (nu am introdus un test pentru acest lucru, am presupus ca terminalul pe care va fi rulat va indeplini aceste conditii).
+
+In meniu se navigheaza cu tastele sageata-jos si sageata-sus, iar pentru selectare se folosesc Space/Enter(meniul este ciclic). Pentru selectarea unui anumit nivel al jocului, se merge pe optiunea Select starting level, se schimba levelul cu tastele sageata-dreapta si sageata-stanga si apoi se selecteaza New Game. Optiunea Quit duce la iesirea din joc.
+
+Instructiuni de joc:
+Piesele se deplaseaza la stanga, la dreapta, in jos in limita careului de joc la apasarea tastelor sageti corespunzatoare. Prin apasarea tastei sageata sus, o piesa se va roti asa cum este ilustrat in schema de pe site-ul temei - http://elf.cs.pub.ro/programare/proiectul/tetris (in principiu, in sens trigonometric, insa piesele I, S si Z prezinta niste mici exceptii, asa cum apare in schema de pe site). Apasarea tastei p face ca jocul sa intre in pauza, apasarea ei din nou face ca acesta sa iasa din pauza. Apasarea tastei q la orice moment (chiar si in meniu) duce la iesirea din joc. Apasarea tastei m duce la incheierea jocului si revenirea la meniu.
+
+Pentru codificarea careului de joc am folosit doua matrici. De fapt ele joaca rolul, pe rand, de careu codificat (acest lucru m-a ajutat la implementarea collapse - o matrice primeste de la cea care este activa in acel moment liniile incomplete, devenind ea apoi matrice activa). Piesele au fost implementate fiecare printr-o pozitie absoluta (in care piesa intra in joc) si pozitii relative fata de pozitia anterioara (pentru rotiri), cu ajutorul unor structuri imbricate. Culorile folosite sunt cele de baza din biblioteca curses.h. Fiecare tip de piesa are culoarea ei fixa. 
+Jocul are 7 nivele, trecerea la nivelul urmator se face prin depasirea unui anumit scor fata de nivelul precedent. De asemenea, cu cat numarul nivelului este mai mare, cu atat viteza, numarul de puncte acumulat la distrugerea unei linii si diferenta de scor care trebuie realizata pentru a trece la nivelul urmator sunt mai mari.Odata ajuns la nivelul 7, jucatorul va ramane acolo la infinit. Game Over apare atunci cand o piesa nu mai poate intra in intregime in careul de joc (de exemplu, daca mai exista un rand liber si piesa se intinde pe doua randuri, va intra primul rand din piesa si apoi jucatorul va primi Game Over).       
+
+Bonusuri implementate: 
+- Mutarea piesei cu un rand mai jos la apasarea tastei sageata-jos;
+- Intrarea jocului in pauza la apasarea tastei p (si iesirea lui in acelasi mod);
+- Game Over(cand piesele nu mai pot intra in careul de joc);
+- Incheierea jocului si revenirea la meniu prin apasarea tastei m (Mentionez ca pentru implementarea acestei facilitati am utilizat un label Meniu si instructiunea goto).
+===============================================================================
+B) Feedback organizatoric pentru propunator:
+
+Timp aproximativ de rezolvare:      35-40 ore 
+Gradul de dificultate (1 = simplu)  8-9 (max. 10)
+
+Sugestii, pareri, comentarii, propuneri:
+
+	Tema a fost foarte interesanta, am pus in practica notiunile invatate in liceu si in primul semestru de facultate la programare, am invatat lucruri noi si am vazut cum se realizeaza jocurile clasice (pe care le jucam inca de mici copii).
+
+	Am avut cam putin timp pentru realizarea jocului, mai ales tinand cont ca s-a suprapus cu perioada de presesiune (colocvii, teste si examene la materiile optionale, pregatire pentru examenele din sesiune etc) si cu vacanta care a fost foarte scurta si a cuprins sarbatorile.
+
+	Mie, in particular, daca as fi avut mai mult timp la dispozitie, mi-ar fi placut sa mai lucrez la partea grafica si sa mai implementez si alte facilitati ale jocului.
+	
